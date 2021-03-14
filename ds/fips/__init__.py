@@ -344,11 +344,12 @@ Wisconsin
 105 Rock
 139 Winnebago"""
 fips_counties = fips_counties_from_pdf.split("\n")
-fips_counties = [f for f in fips_counties if len(f.strip()) > 0]
+fips_counties = [f.strip() for f in fips_counties if len(f.strip()) > 0]
 counties_by_state = {}
 for fips_county in fips_counties:
     # garbage page headers from copy from pdf
-    if fips_county in ['FIPSCounty County', 'Code Name State', '11-24'] or re.match('\d\d-\d\d\W?'): continue
+    if fips_county in ['FIPSCounty County', 'Code Name State', '11-24'] or re.match('\d\d-\d\d\W?', fips_county):
+        continue
     if fips_county[0] in "0123456789":
         current_state = current_state or current_state or 'Unknown'
         counties = counties_by_state.get(current_state, [])
