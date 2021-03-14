@@ -15,11 +15,14 @@ if __name__ == '__main__':
     # HETS80 : total amount spent on food last week
     # HES8B : would you spend more(1), less(2), same(3) to meet weekly food needs of household
     # HETS8CO : how much more per week to meet food needs of household: - indicates not respond
-    # HESP1 : has anyone in house needed SNAP
+    # HESP1 : has anyone in house needed SNAP yes(1) no(2)
+    # HESS4 : couldn't afford balanced meals: often(3) sometimes(2) never(1)
 
-    cols = ['GCTCO', 'GCFIP', 'HETS8OU', 'HETS8O', 'HES8B', 'HETS8CO', 'HESP1']
+    cols = ['GCTCO', 'GCFIP', 'HETS8OU', 'HETS8O', 'HES8B', 'HETS8CO', 'HESP1', 'HESS4']
     out_data = food[cols]
-    out_data = out_data.loc[out_data['GCTCO'] > 0]
-    out_data = out_data.loc[out_data['GCFIP'] > 0]
-    out_data.columns = ['FIPS_COUNTY', 'FIPS_STATE', 'USUAL_FOOD_SPEND', 'TOTAL_FOOD_SPEND_LAST_WEEK', 'FOOD_WOULD_SPEND_MORE', 'FOOD_SPEND_INCREASE_WEEK', 'RECEIVED_SNAP']
+    out_data.columns = ['FIPS_COUNTY', 'FIPS_STATE', 'USUAL_FOOD_SPEND', 'TOTAL_FOOD_SPEND_LAST_WEEK',
+                        'FOOD_NEED_MORE', 'FOOD_SPEND_INCREASE_WEEK', 'RECEIVED_SNAP', 'NOT_AFFORD_BALANCED_MEALS']
+    out_data = out_data.loc[((out_data['FIPS_COUNTY'] > 0) & (out_data['FIPS_STATE'] > 0))]
+    # out_data = out_data.loc[out_data['FOOD_NEED_MORE'] == 1] # INDICATES "need more food" - spend too low
+    print(f"OUTPUTTING food data: len {len(out_data)}")
     out_data.to_csv('output/food.csv', index=False)
