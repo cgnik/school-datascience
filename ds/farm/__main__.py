@@ -15,12 +15,13 @@ if __name__ == '__main__':
     COMMODITY_DESC gives a good specific set of actual products we could subselect
     
     """
-    sectors = ['CROPS', 'ANIMALS & PRODUCTS']
     farms = farms.loc[farms['AGG_LEVEL_DESC'] == 'COUNTY']
-    # farms = farms.loc[farms['SECTOR_DESC'].isin(sectors)]
+    farms = farms.loc[farms['SECTOR_DESC'] == 'CROPS']
     farms = farms.loc[farms['COUNTY_CODE'].notna()]
     farms = farms.loc[farms['STATE_FIPS_CODE'].notna()]
     farms['COUNTY_CODE'] = farms['COUNTY_CODE'].apply(lambda c: int(c))
     cols = ['STATE_FIPS_CODE',  'COUNTY_CODE', 'COUNTY_NAME', 'SECTOR_DESC', 'COMMODITY_DESC']
     farms = farms[cols]
     print(f"FARM data: processed {farms_count} records, {farm_feature_count} features\nRESULTS: {len(farms)} records, {len(farms.columns)} features")
+    out_data = farms
+    out_data.to_csv('output/farms.csv', index=False)

@@ -23,6 +23,5 @@ if __name__ == '__main__':
     out_data.columns = ['FIPS_COUNTY', 'FIPS_STATE', 'USUAL_FOOD_SPEND', 'TOTAL_FOOD_SPEND_LAST_WEEK',
                         'FOOD_NEED_MORE', 'FOOD_SPEND_INCREASE_WEEK', 'RECEIVED_SNAP', 'NOT_AFFORD_BALANCED_MEALS']
     out_data = out_data.loc[((out_data['FIPS_COUNTY'] > 0) & (out_data['FIPS_STATE'] > 0))]
-    # out_data = out_data.loc[out_data['FOOD_NEED_MORE'] == 1] # INDICATES "need more food" - spend too low
     print(f"OUTPUTTING food data: len {len(out_data)}")
     out_data.to_csv('output/food.csv', index=False)
