@@ -1,8 +1,10 @@
 from ds import log, pd
 from ds.fips import fips_states, fips_counties
+import csv
 
 if __name__ == '__main__':
-    food = pd.read_csv('../data/census_december_2019-food-security.csv.gz', compression='gzip')
+    food = pd.read_csv('../data/census_december_2019-food-security.csv.gz', compression='gzip',
+                       dtype={'GCTCO': object, 'GCFIP': object})
     log.info(f"FOOD: {food}")
     log.info(f"FOOD COLUMNS: {food.columns}")
     cols = lambda c, s: [(i, k) for i, k in enumerate(c) if k.startswith(s)]
@@ -22,6 +24,6 @@ if __name__ == '__main__':
     out_data = food[cols]
     out_data.columns = ['FIPS_COUNTY', 'FIPS_STATE', 'USUAL_FOOD_SPEND', 'TOTAL_FOOD_SPEND_LAST_WEEK',
                         'FOOD_NEED_MORE', 'FOOD_SPEND_INCREASE_WEEK', 'RECEIVED_SNAP', 'NOT_AFFORD_BALANCED_MEALS']
-    out_data = out_data.loc[((out_data['FIPS_COUNTY'] > 0) & (out_data['FIPS_STATE'] > 0))]
+    out_data = out_data.loc[((out_data['FIPS_COUNTY'].notna()) & (out_data['FIPS_STATE'].notna()))]
     print(f"OUTPUTTING food data: len {len(out_data)}")
-    out_data.to_csv('output/food.csv', index=False)
+    out_data.to_csv('output/food.csv', index=False, quoting=csv.QUOTE_NONNUMERIC)
