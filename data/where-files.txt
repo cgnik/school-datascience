@@ -1,0 +1,14 @@
+-rwxr----- 1 christo wheel  70M Mar 14 15:09 2017_cdqt_data.txt.gz
+-rwxr----- 1 christo wheel  17M Jan  6 13:11 2020_Gaz_tracts_national.txt
+-rwxr----- 1 christo wheel 2.4M Apr 17 12:21 2020_Gaz_tracts_national.zip
+-rwxr----- 1 christo wheel 194M Mar 12 21:03 census_december_2019-food-security.csv
+-rwxr----- 1 christo wheel 2.0M Mar 13 19:04 census_december_2019-food-security.pdf
+-rwxr----- 1 christo wheel 1.4M Mar 11 18:33 churn.arff
+-rwxr----- 1 christo wheel  57M May 21  2020 food_access_research_atlas.csv
+-rwxr----- 1 christo wheel  21K May 21  2020 food_access_variable_lookup.csv
+-rwxr----- 1 christo wheel  20M Apr 17 14:14 food-deserts-from-kaggle.zip
+-rwxr----- 1 christo wheel 161M Mar 19 20:35 food_final.csv
+-rwxr----- 1 christo wheel 166M Mar 30 19:16 food_final.csv.arff
+-rwxr----- 1 christo wheel 104K Apr  1 18:16 food_final-weka_analysis.bak
+-rwxr----- 1 christo wheel 104K Apr  7 10:27 food_final-weka_analysis.docx
+
